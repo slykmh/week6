@@ -16,18 +16,18 @@ pipeline {
           }
           stage("Code coverage") {
                steps {
-                    sh "./gradlew jacocoTestReport"
-                    sh "./gradlew jacocoTestCoverageVerification"
+                    sh "./sample1/gradlew jacocoTestReport"
+                    sh "./sample1/gradlew jacocoTestCoverageVerification"
                }
           }
           stage("Static code analysis") {
                steps {
-                    sh "./gradlew checkstyleMain"
+                    sh "./sample1/gradlew checkstyleMain"
                }
           }
           stage("Package") {
                steps {
-                    sh "./gradlew build"
+                    sh "./sample1/gradlew build"
                }
           }
 
