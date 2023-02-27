@@ -23,7 +23,8 @@ podTemplate(containers: [
               try {
                         sh '''
 		        pwd
-			./gradlew jacocoTestCoverageVerification
+			cd /var/jenkins_home/workspace/wee6-multibranch_feature/
+                        ./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
