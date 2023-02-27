@@ -1,4 +1,4 @@
-PodTemplate(containers: [
+\PodTemplate(containers: [
     containerTemplate(
         name: 'gradle', image: 'gradle:6.3-jdk14', command: 'sleep', args: '30d', 
         ),
@@ -10,9 +10,9 @@ PodTemplate(containers: [
                 stage('Build a gradle project') {
                     // from the git plugin
                     // https://www.jenkins.io/doc/pipeline/steps/git/
-                    git 'https://github.com/slykmh/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
+                    git 'https://github.com/slykmh/week6.git'
                     sh '''
-                    cd Chapter08/sample1
+                    cd sample1
                     chmod +x gradlew
                     ./gradlew test
                     '''
