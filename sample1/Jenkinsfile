@@ -1,9 +1,8 @@
 podTemplate(containers: [
     containerTemplate(
-        name: 'gradle', image: 'gradle:6.3-jdk14', command: 'sleep', args: '30d'
+        name: 'gradle', image: 'gradle:6.3-jdk14', command: 'sleep', args: '30d', 
         ),
-    ]) {
-
+    ],podRetention: onFailure()) {
     node(POD_LABEL) {
         stage('Run pipeline against a gradle project') {
             // "container" Selects a container of the agent pod so that all shell steps are executed in that container.
@@ -19,11 +18,11 @@ podTemplate(containers: [
                     '''
                 }
                 stage('Code StyleCheck') {
-//                    try {
+                    try {
                         sh '''
-        	            pwd
-               		cd Chapter08/sample1
-                	      ./gradlew checkstyleMain
+	                pwd
+		        cd Chapter08/sample1
+	                ./gradlew checkstyleMain
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
@@ -42,9 +41,9 @@ podTemplate(containers: [
                 stage("Code coverage") {
                     try {
                         sh '''
-        	            pwd
-               		cd Chapter08/sample1
-                	      ./gradlew jacocoTestCoverageVerification
+	                pwd
+		        cd Chapter08/sample1
+	                ./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
