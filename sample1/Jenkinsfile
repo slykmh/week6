@@ -23,8 +23,7 @@ podTemplate(containers: [
               try {
                         sh '''
 		        pwd
-			cd sample1
-	                ./gradlew jacocoTestCoverageVerification
+			./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
