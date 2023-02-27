@@ -23,7 +23,7 @@ podTemplate(containers: [
               try {
                         sh '''
 		        pwd
-			cd /sample1
+			cd sample1
 	                ./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
