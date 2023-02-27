@@ -6,12 +6,12 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    sh "./gradlew compileJava"
+                    sh "./sample1/gradlew compileJava"
                }
           }
           stage("Unit test") {
                steps {
-                    sh "./gradlew test"
+                    sh "./sample1/gradlew test"
                }
           }
           stage("Code coverage") {
