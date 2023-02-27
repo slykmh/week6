@@ -18,13 +18,12 @@ podTemplate(containers: [
             if (env.BRANCH_NAME == "feature") {
               echo "I am the ${env.BRANCH_NAME} branch"
             }
-            if (env.BRANCH_NAME == "main") {
+            if (env.BRANCH_NAME == "feature") {
               echo "I am the ${env.BRANCH_NAME} branch"
               try {
                         sh '''
 		        pwd
-			cd /sample1
-	                ./gradlew jacocoTestCoverageVerification
+			./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
