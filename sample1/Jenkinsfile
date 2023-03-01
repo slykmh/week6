@@ -11,7 +11,7 @@ podTemplate(containers: [
         container('gradle') {
           stage('Build a gradle project') {
             echo "I am the ${env.BRANCH_NAME} branch"
-            git branch: 'feature', credentialsId: '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', url: 'https://github.com/slykmh/week6.git'
+            git branch: 'feature', url: 'https://github.com/slykmh/week6.git'
             sh '''
             cd sample1
             chmod +x gradlew
@@ -29,7 +29,7 @@ podTemplate(containers: [
               try {
                         sh '''
 		        pwd
-			cd /var/jenkins_home/workspace/wee6-multibranch_feature/
+			cd sample1
                         ./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
@@ -37,7 +37,7 @@ podTemplate(containers: [
                         echo 'Failure detected'
                     }
               publishHTML (target: [
-                        reportDir: 'Chapter08/sample1/build/reports/tests/test',
+                        reportDir: 'sample1/build/reports/tests/test',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
               ])
