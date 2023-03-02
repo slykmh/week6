@@ -24,41 +24,24 @@ podTemplate(containers: [
             if (env.BRANCH_NAME == "feature") {
               echo "I am the ${env.BRANCH_NAME} branch"
             }
-            if (env.BRANCH_NAME == "main") {
+            if (env.BRANCH_NAME == "feature") {
               echo "I am the ${env.BRANCH_NAME} branch"
               try {
                         sh '''
-                        pwd
-                        cd sample1
+		        pwd
+			cd sample1
                         ./gradlew jacocoTestCoverageVerification
                         ./gradlew jacocoTestReport
                                                 '''
                     } catch (Exception E) {
                         echo 'Failure detected'
                     }
-                    publishHTML (target: [
+              publishHTML (target: [
                         reportDir: 'sample1/build/reports/tests/test',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
-                   ])
-          stage('Code test') {
-            sh 'printenv'
-            echo "My CC branch is: ${env.CHANGE_BRANCH}"
-            if (env.BRANCH_NAME == "main") {
-              echo "I am the ${env.BRANCH_NAME} branch"
-            }
-            if (env.BRANCH_NAME == "feature") {
-              echo "I am the ${env.BRANCH_NAME} branch"
-              try {
-                        sh '''
-                        pwd
-                        cd sample1
-                        ./gradlew test
-                        '''
-                    } catch (Exception E) {
-                        echo 'Failure detected'
-                    }
-                    
+              ])
+		
             }
           }
         }
